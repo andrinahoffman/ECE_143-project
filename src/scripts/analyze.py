@@ -43,15 +43,17 @@ def determine_df(df):
             return {col_name: df.head(30)}
         case 'source':
             return {col_name: df.head(30)}
+        case 'country':
+            return {col_name: df.head(30)}
         case 'state':
             return {
-                'states east west': get_east_west_state_table(df),
-                'states north south': get_north_south_state_table(df)
+                'states east west': build_table(df, 'state', 'states east west', assign_east_west_state_region),
+                'states north south': build_table(df, 'state', 'states north south', assign_north_south_state_region)
             }
         case 'name':
             return {
-                "first name first letter": get_first_name_table(df),
-                "last name first letter": get_last_name_table(df)
+                "first name first letter": build_table(df, 'name', 'first name first letter', assign_based_on_first_letter_first_name),
+                "last name first letter": build_table(df, 'name', 'last name first letter', assign_based_on_first_letter_last_name)
             }
         case _:
             return {col_name: df}
@@ -108,38 +110,8 @@ def assign_based_on_first_letter_last_name(name):
     else:
         return n[0][0]
 
-def get_first_name_table(df):
-    """
-    Get a pivot table based on the first letter of the first name.
-    
-    df: DataFrame.
-    
-    return: DataFrame.
-    """
-    return build_table(df, 'name', 'first name first letter', assign_based_on_first_letter_first_name)
-
-def get_last_name_table(df):
-    """
-    Get a pivot table based on the first letter of the last name.
-    
-    df: DataFrame.
-    
-    return: DataFrame.
-    """
-    return build_table(df, 'name', 'last name first letter', assign_based_on_first_letter_last_name)
-
 northern_states = ['Washington', 'Oregon', 'Idaho', 'Montana', 'North Dakota', 'South Dakota', 'Minnesota', 'Wisconsin', 'Michigan', 'Wyoming', 'Nebraska', 'Iowa', 'Illinois', 'Indiana', 'Ohio', 'Pennsylvania', 'New York', 'Vermont', 'New Hampshire', 'Maine', 'Massachusetts', 'Connecticut', 'Rhode Island', 'Alaska']
 southern_states = ['California', 'Nevada', 'Utah', 'Colorado', 'Kansas', 'Missouri', 'Kentucky', 'West Virginia', 'Virginia', 'Maryland', 'Delaware', 'New Jersey', 'North Carolina', 'South Carolina', 'Tennessee', 'Arkansas', 'Oklahoma', 'Texas', 'Louisiana', 'Mississippi', 'Alabama', 'Georgia', 'Florida', 'Arizona', 'New Mexico', 'Hawaii']
-
-def get_north_south_state_table(statesDf):
-    """
-    Get a pivot table based on the northern and southern states.
-    
-    statesDf: DataFrame containing states data.
-    
-    return: DataFrame.
-    """
-    return build_table(statesDf, 'state', 'states north south', assign_north_south_state_region)
 
 def assign_north_south_state_region(state):
     """
@@ -160,16 +132,6 @@ west_states = ['Alaska', 'California', 'Hawaii', 'Oregon', 'Washington', 'Idaho'
 midwest_states = ['North Dakota', 'South Dakota', 'Nebraska', 'Kansas', 'Minnesota', 'Iowa', 'Missouri', 'Wisconsin', 'Illinois', 'Michigan', 'Indiana', 'Ohio']
 mid_east_states = ['Texas', 'Oklahoma', 'Arkansas', 'Louisiana', 'Kentucky', 'Tennessee', 'Mississippi', 'Alabama']
 east_states = ['Maine', 'New Hampshire', 'Vermont', 'Massachusetts', 'Rhode Island', 'Connecticut', 'New York', 'Pennsylvania', 'New Jersey', 'Delaware', 'Maryland', 'West Virginia', 'Virginia', 'North Carolina', 'South Carolina', 'Georgia', 'Florida']
-
-def get_east_west_state_table(statesDf):
-    """
-    Get a pivot table based on the eastern and western states.
-    
-    statesDf: DataFrame containing states data.
-    
-    return: DataFrame.
-    """
-    return build_table(statesDf, 'state', 'states east west', assign_east_west_state_region)
 
 def assign_east_west_state_region(state):
     """
