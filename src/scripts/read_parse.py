@@ -5,14 +5,14 @@ from pathlib import Path
 
 import pandas as pd
 
-def read_csv_data(year):
+def read_csv_data(year, datadir="src/data"):
     '''
     look at a given year csv file previously downloaded
     year: integer of the year
     return: dataframe
     '''
     # Read the CSV file into a DataFrame
-    df = pd.read_csv(f'src/data/billionaires_{year}.csv')
+    df = pd.read_csv(Path(datadir) / f'billionaires_{year}.csv')
     # col = 'realTimePosition'
     # df_uri_notna = df[(df[col].notna()) & (df[col] != 0.0)] # check out many non empty values are in a given column
     return df
