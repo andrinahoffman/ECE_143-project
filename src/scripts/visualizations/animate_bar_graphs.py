@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from .bar_graph import animated_bar_graph
 
-def animate_bar_graphs(dataframes, years, column_name, filename='animation.mp4'):
+def animate_bar_graphs(dataframes, years, column_name, filename='animation.gif'):
     """
     Generate an animated bar graph for a given column across multiple years.
 
@@ -27,14 +27,18 @@ def animate_bar_graphs(dataframes, years, column_name, filename='animation.mp4')
         ax.clear()
         df = dataframes[num]
         year = years[num]
-        bars = animated_bar_graph(df, year, ax, column_name)
+        bars = animated_bar_graph(df, year, fig, ax, column_name)
         return bars
 
     # Create the animation
     anim = FuncAnimation(fig, update, frames=len(dataframes), repeat=False, blit=True)
     
     # Save the animation as an mp4 file
-    anim.save(filename, fps=10, extra_args=['-vcodec', 'libx264'])
+    frame_speed = 4
+    if column_name=="industry" or column_name=="source":
+        frame_speed = 2
+    anim.save(filename, writer='imagemagick', fps=frame_speed)
+    # anim.save(filename, fps=10, extra_args=['-vcodec', 'libx264'])
     
     # Display the animation
     plt.show()
