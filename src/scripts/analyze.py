@@ -40,9 +40,9 @@ def determine_df(df):
         case 'age':
             return {col_name: df}
         case 'industry':
-            return {col_name: df.head(30)}
+            return {col_name: df.head(10)}
         case 'source':
-            return {col_name: df.head(30)}
+            return {col_name: df.head(10)}
         case 'country':
             return {col_name: df.head(30)}
         case 'state':
@@ -67,6 +67,9 @@ def parse_data_count_based_on_col(df, col):
     
     return: DataFrame.
     '''
+    if col == "industry" or col == "source":
+        # Convert specific elements to lowercase
+        df[col] = df[col].apply(lambda x: x.lower() if isinstance(x, str) else x)
     df_source_counts = df.groupby(col).size().reset_index(name='#_of_people').sort_values(by='#_of_people', ascending=False)
     return df_source_counts
 
@@ -126,7 +129,7 @@ def assign_north_south_state_region(state):
     elif state in southern_states:
         return 'South'
     else:
-        return 'International'
+        return 'Int'
     
 west_states = ['Alaska', 'California', 'Hawaii', 'Oregon', 'Washington', 'Idaho', 'Nevada', 'Utah', 'Arizona', 'Montana', 'Wyoming', 'Colorado', 'New Mexico']
 midwest_states = ['North Dakota', 'South Dakota', 'Nebraska', 'Kansas', 'Minnesota', 'Iowa', 'Missouri', 'Wisconsin', 'Illinois', 'Michigan', 'Indiana', 'Ohio']
@@ -144,10 +147,10 @@ def assign_east_west_state_region(state):
     if state in west_states:
         return 'West'
     elif state in midwest_states:
-        return 'Midwest'
+        return 'MW'
     elif state in mid_east_states:
-        return 'Mid-East'
+        return 'ME'
     elif state in east_states:
         return 'East'
     else:
-        return 'International'
+        return 'Int'
