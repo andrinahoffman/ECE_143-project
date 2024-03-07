@@ -14,7 +14,7 @@ def main():
     # Define the columns that are important for analysis
     important_cols = ['country', 'state', 'gender', 'age', 'industry', 'source', 'name']
     # Define the years for analysis
-    years = [year for year in range(2020, 2023)]
+    years = [year for year in range(2003, 2023)]
     # Initialize an empty dictionary to store categorized DataFrames
     dfs = {}
     # Iterate over the years to analyze data
@@ -31,7 +31,7 @@ def main():
         # Reverse the order of data frames so it starts with earlier years
         dfs[key].reverse()
         # Generate and save animation for each data frame
-        animate_bar_graphs(dfs[key], years, key, f"{key}.mp4")
+        animate_bar_graphs(dfs[key], years, key, f"{key}.gif")
 
 if __name__ == "__main__":
     main()
