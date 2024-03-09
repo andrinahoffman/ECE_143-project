@@ -1,3 +1,7 @@
+"""
+Utilities for creating animated bar gifs.
+"""
+
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from .bar_graph import animated_bar_graph

@@ -1,3 +1,7 @@
+"""
+Utility functions to download data from the internet and save it.
+"""
+
 import csv
 from pathlib import Path
 

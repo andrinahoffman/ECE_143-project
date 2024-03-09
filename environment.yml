@@ -200,6 +200,7 @@ dependencies:
   - pandoc=3.1.12.2=hce30654_0
   - pandocfilters=1.5.0=pyhd8ed1ab_0
   - parso=0.8.3=pyhd8ed1ab_0
+  - patsy=0.5.6=pyhd8ed1ab_0
   - pcre2=10.42=h26f9a81_0
   - pexpect=4.9.0=pyhd8ed1ab_0
   - pickleshare=0.7.5=py_1003
@@ -248,6 +249,8 @@ dependencies:
   - rtree=1.2.0=py310ha3239f5_0
   - scikit-learn=1.4.1.post1=py310h7ef31dd_0
   - scipy=1.12.0=py310hf4b343e_2
+  - seaborn=0.13.2=hd8ed1ab_0
+  - seaborn-base=0.13.2=pyhd8ed1ab_0
   - send2trash=1.8.2=pyhd1c38e8_0
   - setuptools=69.1.1=pyhd8ed1ab_0
   - shapely=2.0.3=py310hee2b506_0
@@ -257,6 +260,7 @@ dependencies:
   - soupsieve=2.5=pyhd8ed1ab_1
   - sqlite=3.45.1=hf2abe2d_0
   - stack_data=0.6.2=pyhd8ed1ab_0
+  - statsmodels=0.14.1=py310h50ce23c_0
   - terminado=0.18.0=pyh31c8845_0
   - threadpoolctl=3.3.0=pyhc1e730c_0
   - tiledb=2.20.1=hef06dad_2
