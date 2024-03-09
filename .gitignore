@@ -1,5 +1,7 @@
 src/data/*
 !src/data/.gitkeep
+plots/*
+!plots/.gitkeep
 
 ### JupyterNotebooks ###
 .ipynb_checkpoints

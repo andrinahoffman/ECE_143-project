@@ -1,3 +1,7 @@
+"""
+Utilities for plotting billionaire data bar graphs and animating them.
+"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 
